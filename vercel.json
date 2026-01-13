@@ -1,9 +1,4 @@
 {
-  "framework": "flet",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "index.py"
-    }
-  ]
+  "rewrite_dest": "index.py",
+  "framework": "flet"
 }
