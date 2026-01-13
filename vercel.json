@@ -1,4 +1,5 @@
 {
-  "rewrite_dest": "index.py",
-  "framework": "flet"
+  "version": 2,
+  "framework": "flet",
+  "installCommand": "pip install -r requirements.txt"
 }
