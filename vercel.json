@@ -1,14 +1,9 @@
 {
-  "builds": [
+  "framework": "flet",
+  "rewrites": [
     {
-      "src": "index.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "index.py"
+      "source": "/(.*)",
+      "destination": "index.py"
     }
   ]
 }
