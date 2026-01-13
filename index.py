@@ -44,5 +44,5 @@ def main(page: ft.Page):
         res_cocina,
         res_individual
     )
-
 app = ft.app(target=main, export_asgi=True) # ESTA LINEA ES CLAVE PARA VERCEL
+
