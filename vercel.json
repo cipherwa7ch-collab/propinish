@@ -1,5 +1,8 @@
 {
-  "version": 2,
-  "framework": "flet",
-  "installCommand": "pip install -r requirements.txt"
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "index.py"
+    }
+  ]
 }
