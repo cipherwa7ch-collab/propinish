@@ -18,20 +18,25 @@ def main(page: ft.Page):
 
     def calcular(e):
         try:
-            total = (float(efectivo.value or 0) + float(transbank.value or 0)) * 0.80
-            cocina = (float(efectivo.value or 0) + float(transbank.value or 0)) * 0.20
+            m_efectivo = float(efectivo.value or 0)
+            m_transbank = float(transbank.value or 0)
+            total_disponible = (m_efectivo + m_transbank) * 0.80
+            cocina = (m_efectivo + m_transbank) * 0.20
             
             puntos = sum(1 for c in checks_full.values() if c.value) + sum(0.5 for c in checks_part.values() if c.value)
 
             res_individual.controls.clear()
             if puntos > 0:
-                v_punto = total / puntos
+                v_punto = total_disponible / puntos
                 res_cocina.value = f"Cocina: ${cocina:,.0f}"
                 res_individual.controls.append(ft.Text(f"Full: ${v_punto:,.0f}", size=20, weight="bold"))
                 res_individual.controls.append(ft.Text(f"Part: ${(v_punto*0.5):,.0f}", size=20, weight="bold"))
+            else:
+                res_cocina.value = "Seleccione garzones"
             page.update()
-        except:
-            pass
+        except Exception as ex:
+            res_cocina.value = "Error en datos"
+            page.update()
 
     page.add(
         ft.Text("Propinish", size=30, weight="bold"),
@@ -44,5 +49,6 @@ def main(page: ft.Page):
         res_cocina,
         res_individual
     )
-app = ft.app(target=main, export_asgi=True) # ESTA LINEA ES CLAVE PARA VERCEL
 
+# ESTA ES LA VARIABLE QUE VERCEL ESTÁ BUSCANDO
+app = ft.app(target=main, export_asgi=True)
